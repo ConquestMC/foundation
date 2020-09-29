@@ -1,0 +1,4 @@
+name: Foundation
+main: com.conquestmc.foundation.bukkit.BukkitCore
+author: MaTTHD
+version: 1.0-SNAPSHOT
