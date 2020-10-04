@@ -53,6 +53,6 @@ public class FProfile {
     }
 
     public Object getOrDefault(String key, Object def) {
-        return this.getOrDefault(key, def);
+        return properties.getOrDefault(key, def);
     }
 }
