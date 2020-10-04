@@ -20,6 +20,7 @@ public class CorePlayer extends DataObject implements FPlayer {
         this.uuid = uuid;
         this.name = "unknown";
         this.profiles = Lists.newArrayList();
+        this.online = true;
     }
 
     @Override
@@ -47,6 +48,10 @@ public class CorePlayer extends DataObject implements FPlayer {
         return this.profiles.stream().filter(profile -> profile.getProfileName().equalsIgnoreCase(name)).findFirst().orElse(null);
     }
 
+    public void setOnline(boolean online) {
+        this.online = online;
+    }
+
     @Override
     public List<FProfile> getAllProfiles() {
         return profiles;
@@ -55,5 +60,77 @@ public class CorePlayer extends DataObject implements FPlayer {
     @Override
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public boolean hasPermission(String permission) {
+        FProfile perms = getProfile("permissions");
+        if (perms == null) {
+            return false;
+        }
+
+        List<String> permissions = (List<String>) perms.getOrDefault("permissionList", Lists.newArrayList());
+
+        return permissions.contains(permission);
+    }
+
+    @Override
+    public void givePermission(String permission) {
+        FProfile permProfile = getProfile("permissions");
+
+        if (permProfile == null)
+            return;
+
+        List<String> permissions = (List<String>) permProfile.getOrDefault("permissionList", Lists.newArrayList());
+        permissions.add(permission);
+        permProfile.set("permissionList", permissions);
+        update();
+    }
+
+    @Override
+    public List<String> getPermissions() {
+        FProfile permProfile = getProfile("permissions");
+
+        if (permProfile == null)
+            return null;
+
+        List<String> permissions = (List<String>) permProfile.getOrDefault("permissionList", Lists.newArrayList());
+        return permissions;
+    }
+
+    @Override
+    public boolean isStaff() {
+        FProfile permProfile = getProfile("permissions");
+
+        if (permProfile == null)
+            return false;
+
+        List<String> permissions = (List<String>) permProfile.getOrDefault("permissionList", Lists.newArrayList());
+
+
+        return permissions.contains("rank.staff");
+    }
+
+    @Override
+    public boolean isDonor() {
+        FProfile permProfile = getProfile("permissions");
+
+        if (permProfile == null)
+            return false;
+
+        List<String> permissions = (List<String>) permProfile.getOrDefault("permissionList", Lists.newArrayList());
+
+
+        return permissions.contains("rank.donor");
+    }
+
+    @Override
+    public void giveDrachma(int amount) {
+
+    }
+
+    @Override
+    public void givePoints(int amount) {
+
     }
 }

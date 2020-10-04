@@ -51,4 +51,8 @@ public class FProfile {
     public Object getObject(String key) {
         return this.properties.get(key);
     }
+
+    public Object getOrDefault(String key, Object def) {
+        return this.getOrDefault(key, def);
+    }
 }

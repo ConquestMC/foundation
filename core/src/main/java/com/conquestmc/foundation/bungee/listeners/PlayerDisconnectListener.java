@@ -12,6 +12,7 @@ public class PlayerDisconnectListener implements Listener {
     public void onPlayerQuit(PlayerDisconnectEvent event) {
         CorePlayerManager userManager = (CorePlayerManager) API.getUserManager();
         CorePlayer user = (CorePlayer) userManager.findByUniqueId(event.getPlayer().getUniqueId());
+        user.setOnline(false);
 
         userManager.getUserDataDriver().update(user);
         userManager.getUsers().remove(user);

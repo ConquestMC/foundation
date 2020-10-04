@@ -13,4 +13,14 @@ public interface FPlayer {
     List<FProfile> getAllProfiles();
     void setName(String name);
 
+    boolean hasPermission(String permission);
+    void givePermission(String permission);
+    List<String> getPermissions();
+
+    boolean isStaff();
+    boolean isDonor();
+
+    void giveDrachma(int amount);
+    void givePoints(int amount);
+
 }

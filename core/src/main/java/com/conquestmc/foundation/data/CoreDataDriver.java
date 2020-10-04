@@ -27,7 +27,6 @@ public class CoreDataDriver<T extends DataObject> implements DataDriver<T> {
     public CoreDataDriver(String hostname, int port, String name, Class<? extends T> type, Map<Type, Object> adapters) {
         MongoClient client = MongoClients.create();
         MongoDatabase database = client.getDatabase("conquest");
-        System.out.println(database.listCollectionNames().toString());
 
         this.collection = database.getCollection(name);
         this.type = type;

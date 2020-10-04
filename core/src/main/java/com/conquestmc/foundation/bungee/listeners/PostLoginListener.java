@@ -17,6 +17,9 @@ public class PostLoginListener implements Listener {
             user = new CorePlayer(event.getPlayer().getUniqueId());
             manager.getUserDataDriver().create(user);
         }
+        System.out.println("Updating user");
+        user.setOnline(true);
+        user.update();
         manager.getUsers().add(user);
     }
 }
