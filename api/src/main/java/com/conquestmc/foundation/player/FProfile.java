@@ -55,4 +55,11 @@ public class FProfile {
     public Object getOrDefault(String key, Object def) {
         return properties.getOrDefault(key, def);
     }
+
+    public void addDefault(String key, Object value) {
+        if (properties.get(key) != null)
+            return;
+
+        properties.put(key, value);
+    }
 }
