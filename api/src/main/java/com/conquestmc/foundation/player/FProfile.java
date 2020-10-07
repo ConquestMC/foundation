@@ -28,8 +28,8 @@ public class FProfile {
         return (Boolean) this.properties.get(key);
     }
 
-    public Integer getInteger(String key) {
-        return (Integer) this.properties.get(key);
+    public int getInteger(String key) {
+        return (int) properties.get(key);
     }
 
     public Double getDouble(String key) {
