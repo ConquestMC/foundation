@@ -20,6 +20,7 @@ public class PostLoginListener implements Listener {
         System.out.println("Updating user");
         user.setOnline(true);
         user.update();
+        user.setName(event.getPlayer().getName());
         manager.getUsers().add(user);
     }
 }

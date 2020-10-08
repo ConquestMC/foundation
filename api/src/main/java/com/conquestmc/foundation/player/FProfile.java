@@ -29,7 +29,8 @@ public class FProfile {
     }
 
     public int getInteger(String key) {
-        return (int) properties.get(key);
+        Double data1 = (double) this.properties.get(key);
+        return data1.intValue();
     }
 
     public Double getDouble(String key) {
