@@ -29,7 +29,14 @@ public class FProfile {
     }
 
     public Integer getInteger(String key) {
-        return ((Double) this.properties.get(key)).intValue();
+        Object value = this.properties.get(key);
+        if (value instanceof Integer) {
+            return (Integer) value;
+        }
+        else if (value instanceof Double) {
+            return ((Double) this.properties.get(key)).intValue();
+        }
+        return 0;
     }
 
     public Double getDouble(String key) {
